@@ -1,0 +1,11 @@
+args <- commandArgs(trailingOnly = FALSE)
+script_arg <- grep("^--file=", args, value = TRUE)
+script_dir <- if (length(script_arg)) dirname(normalizePath(sub("^--file=", "", script_arg))) else getwd()
+data_dir <- file.path(script_dir, "data")
+out_dir <- file.path(script_dir, "outputs")
+dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
+message("Activity directory: ", script_dir)
+team <- read.csv(file.path(data_dir,"team_capacity.csv")); jobs <- read.csv(file.path(data_dir,"pipeline_jobs.csv")); jobs$weighted_demand <- jobs$hours*(1+jobs$priority/10)
+available <- sum(team$available_hours); demand <- sum(jobs$hours); util <- demand/available
+allocation <- jobs[order(-jobs$priority,-jobs$clinical_impact),]; allocation$decision <- ifelse(cumsum(allocation$hours)<=available,"schedule","defer")
+write.csv(allocation,file.path(out_dir,"capacity_allocation.csv"),row.names=FALSE); write.csv(data.frame(available,demand,utilisation=util),file.path(out_dir,"capacity_summary.csv"),row.names=FALSE)

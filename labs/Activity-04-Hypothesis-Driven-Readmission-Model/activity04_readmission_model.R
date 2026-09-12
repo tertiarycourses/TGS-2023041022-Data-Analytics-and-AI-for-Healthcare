@@ -1,0 +1,12 @@
+args <- commandArgs(trailingOnly = FALSE)
+script_arg <- grep("^--file=", args, value = TRUE)
+script_dir <- if (length(script_arg)) dirname(normalizePath(sub("^--file=", "", script_arg))) else getwd()
+data_dir <- file.path(script_dir, "data")
+out_dir <- file.path(script_dir, "outputs")
+dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
+message("Activity directory: ", script_dir)
+set.seed(1022); d <- read.csv(file.path(data_dir,"readmission_patients.csv")); idx <- sample(seq_len(nrow(d)),floor(.75*nrow(d)))
+tr <- d[idx,]; te <- d[-idx,]; m1 <- glm(readmitted~age+prior_admissions+los_days,binomial(),tr); m2 <- glm(readmitted~age+prior_admissions+los_days+discharge_support+comorbidity_count,binomial(),tr)
+score <- function(m){p<-predict(m,te,type="response"); pred<-as.integer(p>=.4); c(AIC=AIC(m),accuracy=mean(pred==te$readmitted),sensitivity=sum(pred==1&te$readmitted==1)/sum(te$readmitted==1))}
+res <- rbind(baseline=score(m1),customised=score(m2)); write.csv(res,file.path(out_dir,"model_comparison.csv"))
+write.csv(data.frame(term=names(coef(m2)),estimate=coef(m2)),file.path(out_dir,"model_coefficients.csv"),row.names=FALSE)

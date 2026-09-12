@@ -1,0 +1,11 @@
+"region","group","predicted_risk","observed_rate","calibration_gap"
+"Central","adult",0.12,0.117,0.00299999999999999
+"East","adult",0.1,0.096,0.004
+"North","adult",0.08,0.075,0.005
+"South","adult",0.16,0.159,0.001
+"West","adult",0.14,0.138,0.002
+"Central","older",0.14,0.142,-0.00199999999999997
+"East","older",0.12,0.121,-0.001
+"North","older",0.1,0.1,0
+"South","older",0.18,0.184,-0.004
+"West","older",0.16,0.163,-0.003

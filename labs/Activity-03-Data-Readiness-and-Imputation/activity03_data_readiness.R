@@ -1,0 +1,13 @@
+args <- commandArgs(trailingOnly = FALSE)
+script_arg <- grep("^--file=", args, value = TRUE)
+script_dir <- if (length(script_arg)) dirname(normalizePath(sub("^--file=", "", script_arg))) else getwd()
+data_dir <- file.path(script_dir, "data")
+out_dir <- file.path(script_dir, "outputs")
+dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
+message("Activity directory: ", script_dir)
+d <- read.csv(file.path(data_dir,"patient_monitoring_dirty.csv"),na.strings=c("","NA"))
+before <- colMeans(is.na(d)); for (nm in names(d)[sapply(d,is.numeric)]) d[[nm]][is.na(d[[nm]])] <- median(d[[nm]],na.rm=TRUE)
+after <- colMeans(is.na(d)); write.csv(data.frame(field=names(d),missing_before=before,missing_after=after),file.path(out_dir,"readiness_report.csv"),row.names=FALSE)
+write.csv(d,file.path(out_dir,"patient_monitoring_clean.csv"),row.names=FALSE)
+backlog <- read.csv(file.path(data_dir,"project_backlog.csv")); backlog$score <- .35*backlog$clinical_impact+.25*backlog$data_readiness+.20*backlog$feasibility+.20*backlog$time_to_value
+write.csv(backlog[order(-backlog$score),],file.path(out_dir,"prioritised_backlog.csv"),row.names=FALSE)

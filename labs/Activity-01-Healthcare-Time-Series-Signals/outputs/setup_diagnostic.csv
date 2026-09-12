@@ -1,0 +1,4 @@
+"check","observed","expected"
+"R target","4.4.3",">= 4.6.0"
+"BiocManager","FALSE","installed"
+"Bioconductor target",NA,"3.23"

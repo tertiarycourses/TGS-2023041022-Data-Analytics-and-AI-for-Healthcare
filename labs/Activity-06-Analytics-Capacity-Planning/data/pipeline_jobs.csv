@@ -1,0 +1,6 @@
+job,hours,priority,clinical_impact
+Cohort QC,20,9,9
+DE analysis,34,8,8
+Readmission model,30,10,10
+Dashboard,22,7,8
+Archive study,24,3,4

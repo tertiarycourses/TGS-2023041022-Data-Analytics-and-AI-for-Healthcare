@@ -1,0 +1,5 @@
+project,clinical_impact,data_readiness,feasibility,time_to_value
+Readmission,9,8,7,8
+Imaging triage,10,5,5,4
+Ward demand,8,9,8,9
+Genomics biomarker,7,4,4,3

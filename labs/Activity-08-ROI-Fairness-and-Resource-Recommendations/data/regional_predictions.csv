@@ -1,0 +1,11 @@
+region,group,population,predicted_risk,observed_rate,intervention
+North,adult,100000,0.08,0.075,Outreach
+North,older,100000,0.1,0.1,Outreach
+East,adult,115000,0.1,0.096,Telehealth
+East,older,115000,0.12,0.121,Telehealth
+Central,adult,130000,0.12,0.117,Care team
+Central,older,130000,0.14,0.142,Care team
+West,adult,145000,0.14,0.138,Outreach
+West,older,145000,0.16,0.163,Outreach
+South,adult,160000,0.16,0.159,Telehealth
+South,older,160000,0.18,0.184,Telehealth

@@ -1,0 +1,5 @@
+role,available_hours,skill
+Data analyst,28,visualisation
+Biostatistician,24,inference
+Bioinformatician,30,Bioconductor
+ML engineer,26,deployment

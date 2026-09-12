@@ -1,0 +1,6 @@
+"job","hours","priority","clinical_impact","weighted_demand","decision"
+"Readmission model",30,10,10,60,"schedule"
+"Cohort QC",20,9,9,38,"schedule"
+"DE analysis",34,8,8,61.2,"schedule"
+"Dashboard",22,7,8,37.4,"schedule"
+"Archive study",24,3,4,31.2,"defer"

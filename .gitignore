@@ -1,0 +1,39 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Private source material, tooling, assessments, and answer keys
+.claude/
+assessment/
+reference/
+build/
+qa/
+qa_visual/
+tmp/
+*.rebuild-backup/
+
+# Generated Office/PDF artifacts are distributed from the verified Drive folder
+courseware/*.pptx
+courseware/*.docx
+courseware/*.pdf
+courseware/assets/
+courseware/QA/
+courseware/archive/
+
+# R and editor build state
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+renv/staging/
+**/.ipynb_checkpoints/
+**/__pycache__/
+**/.venv/
+**/venv/
+**/node_modules/
+
+# Secrets and credentials anywhere in learner activity trees
+**/*.pem
+**/*.key
+**/credentials*

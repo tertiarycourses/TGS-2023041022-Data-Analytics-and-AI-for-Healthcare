@@ -1,0 +1,17 @@
+args <- commandArgs(trailingOnly = FALSE)
+script_arg <- grep("^--file=", args, value = TRUE)
+script_dir <- if (length(script_arg)) dirname(normalizePath(sub("^--file=", "", script_arg))) else getwd()
+data_dir <- file.path(script_dir, "data")
+out_dir <- file.path(script_dir, "outputs")
+dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
+message("Activity directory: ", script_dir)
+expr <- as.matrix(read.csv(file.path(data_dir,"expression_matrix.csv"),row.names=1,check.names=FALSE))
+meta <- read.csv(file.path(data_dir,"sample_metadata.csv"),stringsAsFactors=FALSE)
+if (requireNamespace("SummarizedExperiment",quietly=TRUE) && requireNamespace("S4Vectors",quietly=TRUE)) {
+  se <- SummarizedExperiment::SummarizedExperiment(assays=list(counts=expr), colData=S4Vectors::DataFrame(meta))
+  stopifnot(identical(colnames(SummarizedExperiment::assay(se)), meta$sample_id))
+}
+case_mean <- rowMeans(expr[,meta$group=="case",drop=FALSE]); ctrl_mean <- rowMeans(expr[,meta$group=="control",drop=FALSE])
+insights <- data.frame(gene=rownames(expr),case_mean=case_mean,control_mean=ctrl_mean,delta=case_mean-ctrl_mean)
+write.csv(insights[order(-abs(insights$delta)),],file.path(out_dir,"cohort_insights.csv"),row.names=FALSE)
+png(file.path(out_dir,"cohort_heatmap.png"),900,700); heatmap(scale(expr),ColSideColors=ifelse(meta$group=="case","#DC2626","#1F6FEB")); dev.off()

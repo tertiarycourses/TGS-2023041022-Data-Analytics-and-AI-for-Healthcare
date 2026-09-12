@@ -1,0 +1,5 @@
+"project","clinical_impact","data_readiness","feasibility","time_to_value","score"
+"Ward demand",8,9,8,9,8.45
+"Readmission",9,8,7,8,8.15
+"Imaging triage",10,5,5,4,6.55
+"Genomics biomarker",7,4,4,3,4.85

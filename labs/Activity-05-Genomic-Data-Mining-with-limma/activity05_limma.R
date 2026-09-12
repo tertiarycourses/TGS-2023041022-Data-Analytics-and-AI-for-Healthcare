@@ -1,0 +1,11 @@
+args <- commandArgs(trailingOnly = FALSE)
+script_arg <- grep("^--file=", args, value = TRUE)
+script_dir <- if (length(script_arg)) dirname(normalizePath(sub("^--file=", "", script_arg))) else getwd()
+data_dir <- file.path(script_dir, "data")
+out_dir <- file.path(script_dir, "outputs")
+dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
+message("Activity directory: ", script_dir)
+expr <- as.matrix(read.csv(file.path(data_dir,"gene_expression.csv"),row.names=1,check.names=FALSE)); meta <- read.csv(file.path(data_dir,"sample_metadata.csv")); design <- model.matrix(~0+factor(meta$group)); colnames(design)<-c("control","case")
+if (requireNamespace("limma",quietly=TRUE)) {fit<-limma::lmFit(expr,design); fit<-limma::contrasts.fit(fit,limma::makeContrasts(case-control,levels=design)); fit<-limma::eBayes(fit); tab<-limma::topTable(fit,n=Inf)} else {p<-apply(expr,1,function(x)t.test(x[meta$group=="case"],x[meta$group=="control"])$p.value); tab<-data.frame(logFC=rowMeans(expr[,meta$group=="case"])-rowMeans(expr[,meta$group=="control"]),P.Value=p,adj.P.Val=p.adjust(p,"BH"))}
+tab$gene<-rownames(tab); write.csv(tab[order(tab$adj.P.Val),],file.path(out_dir,"differential_expression.csv"),row.names=FALSE)
+pc<-prcomp(t(expr),scale.=TRUE); png(file.path(out_dir,"pca.png"),900,650); plot(pc$x[,1:2],col=ifelse(meta$group=="case","#DC2626","#1F6FEB"),pch=19); dev.off()

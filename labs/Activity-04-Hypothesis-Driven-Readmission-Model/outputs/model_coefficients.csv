@@ -1,0 +1,7 @@
+"term","estimate"
+"(Intercept)",-4.63563795192312
+"age",0.00271218260767886
+"prior_admissions",1.70978772549918
+"los_days",0.177903731309873
+"discharge_support",-0.166464859158524
+"comorbidity_count",-0.0905318557502113
