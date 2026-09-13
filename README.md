@@ -1,12 +1,18 @@
-# TGS-2023041022 - Data Analytics and AI for Healthcare
+# Data Analytics and AI for Healthcare
 
-Learner-safe companion repository for Tertiary Infotech Academy's WSQ course **Data Analytics and AI for Healthcare**.
+A learner-safe companion to Tertiary Infotech Academy's WSQ course, with eight hands-on R and Bioconductor Activities using synthetic healthcare data.
 
-- Course code: `TGS-2023041022`
-- Duration: 2 days / 16 hours
-- Provider: Tertiary Infotech Academy Pte Ltd
-- Official course page: <https://www.tertiarycourses.com.sg/wsq-data-analytics-and-ai-for-healthcare.html>
-- Primary environment: R, RStudio Desktop, and Bioconductor
+| Course detail | Information |
+|---|---|
+| Course code | `TGS-2023041022` |
+| Programme | WSQ |
+| Duration | 2 days / 16 hours |
+| Registration | [View course details and register](https://www.tertiarycourses.com.sg/wsq-data-analytics-and-ai-for-healthcare.html) |
+| Funding | Up to 70% for eligible learners; eligibility and programme terms apply. |
+
+## About the course
+
+Learners use healthcare data and AI methods to investigate outcomes, prioritise analytics projects, evaluate evidence, and communicate recommendations for decision-making. The primary tools are R, RStudio Desktop, and Bioconductor.
 
 ## Learning outcomes
 
@@ -16,6 +22,13 @@ By the end of the course, learners will be able to:
 2. Manage and prioritise healthcare data projects for maximum organisational benefit.
 3. Extract and apply valuable insights from healthcare data to inform strategies.
 4. Communicate strategic insights from data-science evaluation to enhance healthcare decision-making and ROI.
+
+## Topics covered
+
+- AI insights and healthcare data patterns
+- Healthcare data project evaluation and prioritisation
+- Data mining, genomics, and predictive modelling
+- Communicating analytical results, ROI, and fairness
 
 ## Activities
 
@@ -44,13 +57,13 @@ Official setup references:
 
 All supplied datasets are synthetic and de-identified. The examples are for education and do not provide clinical advice. Learners should validate provenance, privacy, uncertainty, subgroup performance, and workflow impact before recommending any real-world healthcare action.
 
+## Public package
+
+The [`labs/` folder](labs/README.md) contains eight learner-facing Activities with guides, R scripts, synthetic datasets, and sample outputs.
+
 ## Public/private boundary
 
 This public repository contains learner-safe Activity guides, scripts, mock data, and generated sample outputs. Trainer slides, Learner Guide, Lesson Plan, assessment papers, marking guides, reference ebooks, credentials, and publication tooling are distributed through controlled course channels and are intentionally excluded from GitHub.
-
-## Funding note
-
-Eligible Singapore Citizens and Permanent Residents may receive SkillsFuture funding of up to 70%, subject to current eligibility and programme terms. Refer to the official course page for the latest details.
 
 ## Licence and attribution
 
