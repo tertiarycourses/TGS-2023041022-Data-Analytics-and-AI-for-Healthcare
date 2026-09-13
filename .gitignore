@@ -6,6 +6,8 @@
 # Private source material, tooling, assessments, and answer keys
 .claude/
 assessment/
+assessment 2/
+courseware 2/
 reference/
 build/
 qa/
